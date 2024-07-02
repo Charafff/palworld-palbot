@@ -7,8 +7,6 @@ import asyncio
 from util.economy_system import get_steam_id, add_points
 from util.rconutility import RconUtility
 
-# This is for https://serverlist.gg
-
 class VoteRewards(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -22,7 +20,7 @@ class VoteRewards(commands.Cog):
             config = json.load(config_file)
         self.servers = config.get("PALWORLD_SERVERS", {})
         self.economy_config = config.get("ECONOMY_SETTINGS", {})
-        self.currency = self.economy_config.get("currency", "points")
+        self.currency = self.economy_config.get("currency", "Points")
         self.vote_reward = self.economy_config.get("vote_reward", 100)
         self.server_slug = self.economy_config.get("vote_slug", "server_slug")
         self.api_key = self.economy_config.get("vote_apikey", "api_key")
@@ -102,7 +100,6 @@ def setup(bot):
         config = json.load(config_file)
 
     economy_settings = config.get("ECONOMY_SETTINGS", {})
-    # Check for both enabled and vote_enabled keys
     if not economy_settings.get("enabled", False) or not economy_settings.get("vote_enabled", False):
         return
 
